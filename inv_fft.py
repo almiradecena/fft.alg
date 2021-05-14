@@ -10,9 +10,9 @@ def is_even(x):
         return False
 
 ##
-# Gets coefficients from sample coordinates representation
-# param A list containing sample coordinates 
-# returns list of coefficients
+# Calculates Samples from DFT
+# param A list containing DFT Coeffs
+# returns list of Complex Signal Coeffs
 def inv_fast_fourier_transform(A):
     N = len(A)                                  # length of coefficients list
 
@@ -24,14 +24,14 @@ def inv_fast_fourier_transform(A):
     A_e = []                                    # even coefficients
     A_o = []                                    # even coefficients
 
-    # split coordinates into even and odd
+    # split input into even and odd
     for i in range(0,N):
         if is_even(i):
             A_e.append(A[i])
         else:
             A_o.append(A[i])
 
-    # get coefficients for even and odd coordinates
+    # Recursive Call for even and odd coordinates
     y_e = inv_fast_fourier_transform(A_e)
     y_o = inv_fast_fourier_transform(A_o)
 
@@ -54,7 +54,7 @@ for x in user_input:
 
 
 print('Calculating fast fourier transform for: ', coeffs)
-result = inv_fast_fourier_transform(coeffs) #Samples #Input Coeff Representation
+result = inv_fast_fourier_transform(coeffs) #Outputs Complex Signal Coeffs
 
 
 # get real part of complex number and divide that by length

@@ -10,11 +10,11 @@ def is_even(x):
         return False
 
 ##
-# Gets sample coordinates from coeffecient representation
-# param A list containing coefficient representation
-# returns list of sample coordinates
+# Calculates DFT from sampling 
+# param A list containing Signal Coeffs 
+# returns list of complex sequence which is DFT of Fourier Coeffs
 def fast_fourier_transform(A):
-    n = len(A)                                      # length of coefficient list
+    n = len(A)                                      # length of Signal Coeffs
 
     # base case
     if n == 1:
@@ -31,7 +31,7 @@ def fast_fourier_transform(A):
         else:
             A_o.append(A[i])
     
-    # get sample coordinates for even and odd coefficients
+    # get complex sequence for even and odd coefficients
     y_e = fast_fourier_transform(A_e)
     y_o = fast_fourier_transform(A_o)
 
@@ -52,5 +52,5 @@ for x in user_input:
     coeffs.append(int(x))
 
 print('Calculating fast fourier transform for: ', coeffs)
-result = fast_fourier_transform(coeffs) #Samples #Input Coeff Representation
+result = fast_fourier_transform(coeffs)             #Outputs Discrete Fourier Transform
 print(result) 
